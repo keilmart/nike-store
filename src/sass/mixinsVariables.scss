@@ -1,0 +1,18 @@
+// colours // 
+$black: black;
+$white: #fff;
+$accent1: blue;
+
+// fonts // 
+
+@mixin serif {
+    font-family: starling, serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@mixin lightItalicSans {
+    font-family: interstate, sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
