@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "./static/css/main.a33ccdda.chunk.css",
+    "main.js": "./static/js/main.c74cabbb.chunk.js",
+    "main.js.map": "./static/js/main.c74cabbb.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.eb5b6969.js",
+    "runtime-main.js.map": "./static/js/runtime-main.eb5b6969.js.map",
+    "static/css/2.38ec03a3.chunk.css": "./static/css/2.38ec03a3.chunk.css",
+    "static/js/2.02e6fd37.chunk.js": "./static/js/2.02e6fd37.chunk.js",
+    "static/js/2.02e6fd37.chunk.js.map": "./static/js/2.02e6fd37.chunk.js.map",
+    "static/js/3.72e3a560.chunk.js": "./static/js/3.72e3a560.chunk.js",
+    "static/js/3.72e3a560.chunk.js.map": "./static/js/3.72e3a560.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/2.38ec03a3.chunk.css.map": "./static/css/2.38ec03a3.chunk.css.map",
+    "static/css/main.a33ccdda.chunk.css.map": "./static/css/main.a33ccdda.chunk.css.map",
+    "static/js/2.02e6fd37.chunk.js.LICENSE.txt": "./static/js/2.02e6fd37.chunk.js.LICENSE.txt",
+    "static/media/nikeLogo.6307d151.svg": "./static/media/nikeLogo.6307d151.svg",
+    "static/media/nikeSplashOne.7f43f32b.jpg": "./static/media/nikeSplashOne.7f43f32b.jpg",
+    "static/media/nikeSplashThree.fd198237.jpg": "./static/media/nikeSplashThree.fd198237.jpg",
+    "static/media/nikeSplashTwo.d686f8b6.jpg": "./static/media/nikeSplashTwo.d686f8b6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.eb5b6969.js",
+    "static/css/2.38ec03a3.chunk.css",
+    "static/js/2.02e6fd37.chunk.js",
+    "static/css/main.a33ccdda.chunk.css",
+    "static/js/main.c74cabbb.chunk.js"
+  ]
+}
