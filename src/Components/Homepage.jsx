@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Footer from "./Footer.jsx";
+// import Footer from "./Footer.jsx";
 
 import axios from "axios";
 
@@ -28,7 +28,7 @@ class Homepage extends Component {
     }
     
     // sendDataToParent = () => {
-    //     this.props.searchPlantsProp();
+    //     this.props.searchShoesProp();
     // }
 
         async getArticles() { await axios.get("https://newsapi.org/v2/everything?q=nike&pageSize=8&apiKey=db0bf3c8ac4842a0a4d506a38bea9735" )
@@ -135,9 +135,8 @@ class Homepage extends Component {
                         } 
                     {/* <button className="searchForAPlant" onClick={this.sendDataToParent}>Shop</button> */}
                 </section>
-
-                <Footer />
             </main>
+            {/* <Footer /> */}
         </React.Fragment>
         );
     }

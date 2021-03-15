@@ -41,17 +41,17 @@ class App extends Component {
     const nikeShoesFireStoreData = [];
 
     shoeFirebaseCollection.on("value", (response) => {
-        const plantItem = response.val();
+        const nikeShoeItem = response.val();
 
-        for (let individualPlant in plantItem) {
-          shoeDataFromArray.push(plantItem[individualPlant]);
+        for (let singleNikeShoe in nikeShoeItem) {
+          shoeDataFromArray.push(nikeShoeItem[singleNikeShoe]);
         }
 
-        const plantsObject = shoeDataFromArray[0];
+        const multipleNikeShoeObject = shoeDataFromArray[0];
 
-        Object.entries(plantsObject).map(([key, value]) => {
-          const innerPlantObject = [key, value];
-          const shoe = innerPlantObject[1];
+        Object.entries(multipleNikeShoeObject).map(([key, value]) => {
+          const innerShoeObject = [key, value];
+          const shoe = innerShoeObject[1];
 
           nikeShoesFireStoreData.push({alt: shoe.alt, color: shoe.color, image: shoe.image, name: shoe.name, price: shoe.price, style: shoe.style, });
 
