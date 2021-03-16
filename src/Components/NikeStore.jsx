@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import Loader from "react-loader-spinner";
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
-import Footer from "./Footer.jsx";
-
 import '../sass/app.scss';
+
+import logo from "../assets/nikeLogo.svg"
+import Footer from "./Footer.jsx";
 class NikeStore extends Component {
     constructor() {
         super();
@@ -50,12 +51,12 @@ class NikeStore extends Component {
 
         return(
             <React.Fragment>
-
                 <section className="nikeStoreContainer flexContent">
-                <h1>Men's Trainers & Shoes(18)</h1>
+                <h1>Men's Trainers & Shoes ({(Object.keys(this.state.allShoeInfoArray).length)})</h1>
 
+                {/* Make this element sticky? */}
                 <ProSidebar>
-                    <Menu className="wrapper" iconShape="square">
+                    <Menu className="wrapper">
                             {/* <MenuItem icon={<FaGem />}>Dashboard</MenuItem> */}
                             <SubMenu title="Type">
                                 {/* <SubMenu title="Components" icon={<FaHeart />}> */}
@@ -72,6 +73,8 @@ class NikeStore extends Component {
                             </SubMenu>
                         </Menu>
                     </ProSidebar>
+
+                    {/* <h1>Men's Trainers & Shoes ({(Object.keys(this.state.allShoeInfoArray).length)})</h1> */}
 
                     {
                         this.state.allShoeInfoArray.map( (singleShoeObject, index) => {

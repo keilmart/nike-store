@@ -19,7 +19,7 @@ class Homepage extends Component {
         this.state = {
         articles: [],
         isLoading: true,
-        errors: null
+        // errors: null
         }
     }
 
