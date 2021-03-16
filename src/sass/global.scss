@@ -32,6 +32,10 @@ a {
     color: black;
 }
 
+input {
+    list-style: none;
+}
+
 footer {
     height: 2rem;
     background-color: black;
@@ -91,4 +95,13 @@ button {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.loadScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 92vh;
+    width: 100vw;
+    background-color: white;
 }

@@ -60,8 +60,7 @@ class App extends Component {
           })
         })
       })
-
-  }
+    }
 
   render() {
     return (
@@ -83,7 +82,7 @@ class App extends Component {
           </nav>
         </header>
         <main>
-          <div className="wrapper">
+          <div>
             {this.state.displayHomepage ? <Homepage nikeStoreProp={this.state.nikeShoes} /> : null}
           </div>
           <div>

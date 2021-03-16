@@ -54,7 +54,7 @@ class Homepage extends Component {
     }
 
     render() {
-        console.log(this.state.articles)
+        // console.log(this.state.articles)
         return(
         <React.Fragment>
             <main className="flexContent homepageContainer">
@@ -90,7 +90,7 @@ class Homepage extends Component {
 
                 <section className="flexContent nikeStoreContainer">
                     {
-                        this.props.nikeStoreProp.slice(10, 13).map( (singleShoe, index) => {
+                        this.props.nikeStoreProp.slice(10, 12).map( (singleShoe, index) => {
                                 return (
                                     <div key={index} className="flexContent shoeContainerNews" >
                             {/* <div key={index} className="flexContent shoeContainerNews" href={LINK TO SHOE PAGE HERE, OR UNIQUE SHOE IF POSSIBLE} target="_blank"rel="noreferrer"></div> */}

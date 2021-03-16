@@ -1,58 +1,61 @@
 import React, { Component } from 'react';
-// import React, { Component, useState, useEffect } from 'react';
 
+import Loader from "react-loader-spinner";
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
 
 import Footer from "./Footer.jsx";
 
 import '../sass/app.scss';
-
-    // const Persons = (props) =>  {
-    //     const [nameState , setNameState] = useState(props)
-
-    // useEffect(() => {
-    //     setNameState(props);
-    // }, [props])
-
 class NikeStore extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //     nikeStoreDataArray: [],
-    //     }
-    //         this.setState({
-    //         nikeShoeDataArray: this.props.nikeStoreProp.bind(this),
-    //     })
-    // }
-
+    constructor() {
+        super();
+        this.state = {
+        allShoeInfoArray: [],
+        loading: true,
+        }
+    }
     
-    // constructor(props) {
-    // super(props);
+    componentDidMount(){
+        this.filterNikeStoreProp();
+    }
 
-    // this.state = {
-    //     checkedItems: new Map(),
-    // }
-
-    // this.handleChange = this.handleChange.bind(this);
-    // }
-
-    //     handleChange(e) {
-    // const item = e.target.name;
-    // const isChecked = e.target.checked;
-    // this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
-    // }
-
+    filterNikeStoreProp() {  
+        let ShoeInfoArray = this.props.nikeStoreProp.map((singleShoe) => {
+            const returnedShoesInfo = {
+                Name: singleShoe.name,
+                Style: singleShoe.style,
+                Price: singleShoe.price,
+                Color: singleShoe.color,
+                Image: singleShoe.image,
+                Alt: singleShoe.alt
+                };
+            return returnedShoesInfo
+        });
+        this.setState({
+            allShoeInfoArray: ShoeInfoArray,
+            loading: false,
+        });
+    };
 
     render() {
-        console.log(this.props.nikeStoreProp)
+
+        if (this.state.loading) {
+            return <div className="loadScreen"><Loader
+                type="Puff"
+                color="purple"
+                height={100}
+                width={100}
+            /></div>;
+        }
+
         return(
             <React.Fragment>
-                
-                {/* <h1>Men's Trainers & Shoes(18)</h1> */}
+
+                <section className="nikeStoreContainer flexContent">
+                <h1>Men's Trainers & Shoes(18)</h1>
+
                 <ProSidebar>
-                    <Menu iconShape="square">
-                        <MenuItem>Shoes</MenuItem>
+                    <Menu className="wrapper" iconShape="square">
                             {/* <MenuItem icon={<FaGem />}>Dashboard</MenuItem> */}
                             <SubMenu title="Type">
                                 {/* <SubMenu title="Components" icon={<FaHeart />}> */}
@@ -68,30 +71,31 @@ class NikeStore extends Component {
                                 <MenuItem>$300 - $399 <input type="checkbox"/></MenuItem>
                             </SubMenu>
                         </Menu>
-                    </ProSidebar>;
-
-                <section className="flexContent nikeStoreContainer">
+                    </ProSidebar>
 
                     {
-                        this.props.nikeStoreProp.map( (singleShoe, index) => {
+                        this.state.allShoeInfoArray.map( (singleShoeObject, index) => {
                                 return (
-                                    <div key={index} className="flexContent shoeContainer">
-                                        <div className="shoeImageContainer">
-                                            <img src={singleShoe.image} alt={singleShoe.alt} />
-                                        </div>
-                                        <div className="flexContent shoeInfoContainer">
-                                            <div className="shoeInfoText"><h4>{singleShoe.name}</h4></div>
-                                            <div className="shoeInfoText"><p>{singleShoe.style}</p></div>
-                                            <div className="shoeInfoText"><p>{singleShoe.price}</p></div>
-                                            <div className="shoeInfoText"><h4>{singleShoe.color}</h4></div>
-                                        </div>
-                                    </div>
+                                    <ul key={index}>
+                                        <li className="flexContent shoeContainer">
+                                            <div className="shoeImageContainer">
+                                                <img src={singleShoeObject.Image} alt={singleShoeObject.Alt} />
+                                            </div>
+                                            <div className="flexContent shoeInfoContainer">
+                                                <div className="shoeInfoText"><h4>{singleShoeObject.Name}</h4></div>
+                                                <div className="shoeInfoText"><p>{singleShoeObject.Style}</p></div>
+                                                <div className="shoeInfoText"><p>{singleShoeObject.Price}</p></div>
+                                                <div className="shoeInfoText"><h4>{singleShoeObject.Color}</h4></div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 )
                             // }
                         })
                     } 
-                </section>
-                <Footer />                    
+
+                    </section>
+                <Footer />
             </React.Fragment>
         );
     }
