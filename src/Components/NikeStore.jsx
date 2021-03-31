@@ -15,9 +15,9 @@ class NikeStore extends Component {
         super(props);
         this.state = {
         // allShoeInfoArray: this.props.nikeStoreProp,
-        filterList: this.props.nikeStoreProp,
+        searchLists: this.props.nikeStoreProp,
         loading: true,
-        filterLists: 
+        filterList: 
             [
                 {
                     name: "LifeStyle",
@@ -73,28 +73,28 @@ class NikeStore extends Component {
     // };
     // // --- TEST OVER --- //
 
-      onFilterChange(filter) {
-    const { filterList, activeFilter } = this.state;
-    if (filter === "ALL") {
-      if (activeFilter.length === filterList.length) {
+    onFilterChange(filter) {
+        const { filterList, activeFilter } = this.state;
+        if (filter === "ALL") {
+    if (activeFilter.length === filterList.length) {
         this.setState({ activeFilter: [] });
-      } else {
-        this.setState({ activeFilter: filterList.map(filter => filter.value) });
-      }
     } else {
-      if (activeFilter.includes(filter)) {
-        const filterIndex = activeFilter.indexOf(filter);
-        const newFilter = [...activeFilter];
-        newFilter.splice(filterIndex, 1);
-        this.setState({ activeFilter: newFilter });
-      } else {
-        this.setState({ activeFilter: [...activeFilter, filter] });
-      }
+        this.setState({ activeFilter: filterList.map(filter => filter.value) });
     }
-  }
+    } else {
+        if (activeFilter.includes(filter)) {
+            const filterIndex = activeFilter.indexOf(filter);
+            const newFilter = [...activeFilter];
+                newFilter.splice(filterIndex, 1);
+            this.setState({ activeFilter: newFilter });
+        } else {
+            this.setState({ activeFilter: [...activeFilter, filter] });
+        }
+    }
+}
 
     filteringShoeCategoryFunction() {
-        let allShoeCategories = this.state.filterList.filter(
+        let allShoeCategories = this.state.searchLists.filter(
             (shoeCategorySelected) => {
                 if (shoeCategorySelected.style === 'Lifestyle') {
                 // if (shoeCategorySelected.style.includes('Lifestyle')) {
@@ -112,8 +112,8 @@ class NikeStore extends Component {
     
 
     render() {
-        console.log(this.state.filterList)
-        console.log(this.state.selectedStyleCategory)
+        // console.log(this.state.filterList)
+        // console.log(this.state.selectedStyleCategory)
 
         if (this.state.loading) {
             return <div className="loadScreen">
@@ -125,20 +125,50 @@ class NikeStore extends Component {
             /></div>;
         }
 
+        const { filterList, activeFilter } = this.state;
+            let filteredList;
+            if (
+                activeFilter.length === 0 ||
+                activeFilter.length === filterList.length
+            ) {
+                filteredList = this.state.searchLists;
+            } else {
+                filteredList = this.state.searchLists.filter(item =>
+                    this.state.activeFilter.includes(item.style)
+            );
+        }
+
         return(
-            <React.Fragment>
+            <div>
                 <section className="nikeStoreContainer flexContent">
-                <h1>Men's Trainers & Shoes ({(Object.keys(this.state.filterList).length)})</h1>
+                <h1>Men's Trainers & Shoes ({(Object.keys(this.state.searchLists).length)})</h1>
 
                 {/* Make this element sticky? */}
-                <ProSidebar>
-                    <Menu className="wrapper">
-                            {/* <MenuItem icon={<FaGem />}>Dashboard</MenuItem> */}
+                <form>
+                    <ProSidebar>
+                        <Menu className="wrapper">
                             <SubMenu title="Type">
-                                {/* <SubMenu title="Components" icon={<FaHeart />}> */}
-                                <MenuItem>LifeStyle <input type="checkbox"/></MenuItem>
-                                <MenuItem>Jordan <input type="checkbox"/></MenuItem>
-                                <MenuItem>BasketBall <input type="checkbox"/></MenuItem>
+                                {/* <MenuItem icon={<FaGem />}>Dashboard</MenuItem> */}
+                                <MenuItem><label htmlFor="myInput">All Styles </label>
+                                    <input
+                                        alt="myInput"
+                                        type="checkbox"
+                                        onClick={() => this.onFilterChange("ALL")}
+                                        checked={activeFilter.length === filterList.length}
+                                    />
+                                </MenuItem>
+                                {this.state.filterList.map(filter => (                   
+                                    <React.Fragment>
+                                        <MenuItem><label htmlFor={filter.alt}> {filter.name}</label>
+                                            <input
+                                                id={filter.alt}
+                                                type="checkbox"
+                                                checked={activeFilter.includes(filter.value)}
+                                                onClick={() => this.onFilterChange(filter.value)}
+                                            />
+                                        </MenuItem>
+                                    </React.Fragment>
+                                ))}
                             </SubMenu>
                             <SubMenu title="Price">
                                 {/* <SubMenu title="Components" icon={<FaHeart />}> */}
@@ -149,11 +179,23 @@ class NikeStore extends Component {
                             </SubMenu>
                         </Menu>
                     </ProSidebar>
+                </form>
+                    <ul style={{ marginLeft: "70px" }}>
+                        {filteredList.map(item => (
+                            <div key={item.alt}>
+                                <li>
+                                    <div className="flexContent shoeInfoContainer">
+                                        <div className="shoeInfoText"><h4>{item.name}</h4></div>
+                                    </div>
+                                </li>
+                            </div>
+                        ))}
+                    </ul>
 
                     {/* <h1>Men's Trainers & Shoes ({(Object.keys(this.state.allShoeInfoArray).length)})</h1> */}
 
                     {
-                        this.state.filterList.map( (singleShoeObject, index) => {
+                        this.state.searchLists.map( (singleShoeObject, index) => {
                                 return (
                                     <ul key={index}>
                                         <li className="flexContent shoeContainer">
@@ -196,7 +238,7 @@ class NikeStore extends Component {
 
                     </section>
                 <Footer />
-            </React.Fragment>
+            </div>
         );
     }
 }
